@@ -1,1 +1,658 @@
-﻿<!DOCTYPE html><html><head><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta charset="utf-8" /><title>星爆氣流斬 線上編輯器</title><script type='text/javascript' src='js/x3dom.js'> </script><link rel='stylesheet' type='text/css' href='css/x3dom.css' /><script type='text/javascript' src='js/js01.js'> </script><link rel='stylesheet' type='text/css' href='css01.css' /><script type="text/javascript">var int_nub = 8;var ar_img = new Array();function C_img(src, name) {this.src = src;this.name = name;};ar_img.push(new C_img("img/1-1.png", "逐暗者"));ar_img.push(new C_img("img/1-2.png", "逐暗者（實）"));ar_img.push(new C_img("img/1-3.png", "闡釋者"));ar_img.push(new C_img("img/1-4.png", "闡釋者（實）"));ar_img.push(new C_img("img/2-1.png", "星爆頭"));ar_img.push(new C_img("img/2-2.png", "星爆表情"));ar_img.push(new C_img("img/2-3.png", "星爆頭（左眼）"));ar_img.push(new C_img("img/2-4.png", "星爆頭（右眼）"));ar_img.push(new C_img("img/2-5.png", "星爆頭（鼻子）"));ar_img.push(new C_img("img/2-6.png", "星爆頭（嘴巴）"));ar_img.push(new C_img("img/3-1.png", "衝刺臉"));ar_img.push(new C_img("img/3-2.png", "衝刺表情"));ar_img.push(new C_img("img/3-3.png", "衝刺臉（左眼）"));ar_img.push(new C_img("img/3-4.png", "衝刺臉（右眼）"));ar_img.push(new C_img("img/3-5.png", "衝刺臉（嘴巴）"));ar_img.push(new C_img("img/4-1.png", "騙人的吧"));ar_img.push(new C_img("img/4-2.png", "騙人的吧（左眼）"));ar_img.push(new C_img("img/4-3.png", "騙人的吧（右眼）"));ar_img.push(new C_img("img/4-4.png", "騙人的吧（鼻子）"));ar_img.push(new C_img("img/4-5.png", "騙人的吧（嘴巴）"));ar_img.push(new C_img("img/5-1.png", "騙人的吧"));ar_img.push(new C_img("img/5-2.png", "黑衣劍士服"));ar_img.push(new C_img("img/5-3.png", "星爆身體"));ar_img.push(new C_img("img/5-4.png", "茅場晶彥盾-1"));ar_img.push(new C_img("img/5-5.png", "茅場晶彥盾-2"));ar_img.push(new C_img("img/5-6.png", "艾恩葛朗特"));</script></head><body><div id="main"><div id="m_center"><div onclick='document.getElementById("file_input").click()'>開啟圖片</div><input style="display:none" type="file" id="file_input" accept="image/*" /><div onclick='fun_儲存圖片_開啟()'>保存圖片</div><div onclick='fun_說明_顯示()'>說明</div><a href="" style="display:none" id="a_download" download="starburst_stream.png"></a></div><div id="m_top"><div id="top_box"><canvas id="bac" style="position:absolute;top:0px;"></canvas><div style="width:0px;height:0px;overflow:scroll;"><canvas style="pointer-events:none;opacity:0;" id="bac01"></canvas></div><script type="text/javascript">for (var i = 0; i < int_nub; i++) {var sum = '';sum += '<x3d id="x3d' + i + '" img_id="' + i + '" style="z-index:' + (1000 - i) + ';" disableDoubleClick="true">';sum += '<scene>';sum += '<shape>';sum += '<appearance>';sum += '<ImageTexture id="x3d_img' + i + '" url="' + ar_img[i].src + '"><ImageTexture />';sum += '</appearance>';sum += '<plane solid="false" lit="false"></plane>';sum += '</shape>';sum += '</scene>';sum += '</x3d>';document.write(sum);}for (var i = 0; i < int_nub; i++) {document.getElementById("x3d" + i).style.display = "none";}</script></div></div><div id="m_bottom"><script type="text/javascript">for (var i = 0; i < int_nub; i++) {var sum = '';sum += '<div class="bot_box" x="' + i + '" >';sum += '<div class="bot_eye0">';sum += '<div class="bot_eye" x="' + i + '">';sum += '<div class="bot_eye2" style="opacity:0;" x="' + i + '"></div>';sum += '</div>';sum += '<div class="bot_img" style="background-image:url(' + ar_img[i].src + ')" x="' + i + '"></div>';sum += '  </div>';sum += '  <div class="bot_switch" x="' + i + '" onclick="fun_switch(' + i + ')">切換</div>';sum += '  <div class="bot_name" x="' + i + '">' + ar_img[i].name + '</div>';sum += '</div>';document.write(sum);}var ar_bot = document.getElementsByClassName("bot_box");for (var i = 0; i < ar_bot.length; i++) {ar_bot[i].onclick = fun_點擊素材圖層;}function fun_點擊素材圖層() {for (var j = 0; j < ar_bot.length; j++) {ar_bot[j].style.backgroundColor = "rgb(59, 59, 59)";document.getElementById("x3d" + j).style.pointerEvents = "none";}this.style.backgroundColor = "rgba(25,50,80,1)";document.getElementById("x3d" + this.getAttribute("x")).style.pointerEvents = "";};var bot_eye = document.getElementsByClassName("bot_eye0");for (var i = 0; i < bot_eye.length; i++) {bot_eye[i].onclick = fun_點擊素材眼睛;}function fun_點擊素材眼睛() {var bot_eye2 = this.getElementsByClassName("bot_eye2")[0];if (bot_eye2.style.opacity === "0") {bot_eye2.style.opacity = "1";document.getElementById("x3d" + bot_eye2.getAttribute("x")).style.display = "block";ar_bot[bot_eye2.getAttribute("x")].click();} else {bot_eye2.style.opacity = "0";document.getElementById("x3d" + bot_eye2.getAttribute("x")).style.display = "none";}}ar_bot[0].click();bot_eye[0].click();</script></div></div><div id="switch"><div id="switch_box"><div id="switch_tit">切換素材<button id="switch_tit_close" onclick="fun_switch_close()">╳</button></div><div style="height:50px;"></div><script type="text/javascript">for (var i = 0; i < 26; i++) {if (i == 0) {document.write("<h1>刀劍</h1>");}  else if (i == 4) {document.write("<h1>一臉星爆</h1>");} else if (i == 10) {document.write("<h1>衝刺臉</h1>");} else if (i == 15) {document.write("<h1>騙人的吧</h1>");} else if (i == 20) {document.write("<h1>其他</h1>");}document.write('<a id="switch_img' + i + '" onclick="fun_switch_end(' + i + ')" style="background-image:url(' + ar_img[i].src + ')"></a>');}</script><h1>其他功能</h1><button class="saveimg_but" onclick="fun_物件位置初始化()">物件位置初始化</button><br></div></div><script type="text/javascript">fun_switch_close();function fun_switch_close() {document.getElementById("switch").style.display = "none";}function fun_switch_end(x) {fun_switch_close();document.getElementById("x3d_img" + int_切換編號).setAttribute("url", ar_img[x].src);document.getElementsByClassName("bot_img")[int_切換編號].style.backgroundImage = "url(" + ar_img[x].src + ")";document.getElementsByClassName("bot_name")[int_切換編號].innerHTML =  ar_img[x].name ;document.getElementById("x3d" + int_切換編號).setAttribute("img_id", x);}var int_切換編號 = 0;function fun_switch(x) {document.getElementById("switch").style.display = "block";int_切換編號 = x;var ar_switch_img = document.getElementById("switch_box").getElementsByTagName("a");for (var i = 0; i < ar_switch_img.length; i++) {ar_switch_img[i].className = "";}var img_id = document.getElementById("x3d" + x).getAttribute("img_id");document.getElementById("switch_img" + img_id).className = "switch_sel";document.getElementById("switch_box").scrollTop = document.getElementById("switch_img" + img_id).offsetTop - 100;}function fun_物件位置初始化() {fun_switch_close();document.getElementById("x3d" + int_切換編號).runtime.resetView();}</script><div id="saveing" style="display:none;"><div id="saveing_box">正在儲存圖片</div></div><script type="text/javascript">function fun_儲存中_顯示() {document.getElementById("saveing_box").className = "";document.getElementById("saveing_box").innerHTML = "正在儲存圖片";document.getElementById("saveing").style.display = "block";}function fun_儲存中_隱藏() {document.getElementById("saveing_box").className = "saveing_box_end";document.getElementById("saveing_box").innerHTML = "完成";setTimeout(function () {document.getElementById("saveing").style.display = "none";}, 800);}</script><div id="txt" style="display:none;"><div id="txt_box"><div id="txt_tit">說明<button id="txt_tit_close" onclick="fun_說明_隱藏()">╳</button></div><div style="height:50px;"></div><div style="text-align:left;margin:10px;"><h2>簡述</h2>版本：1.0.1<br><br>從手機選擇一張圖片後，透過各種的刀劍素材，創作出屬於你自己的星爆氣流斬。<br><br><hr><br><h2>【素材】操作：</h2>1.單指拖曳 = 3D旋轉物件<br>2.雙指拖曳 = 拖曳物件<br>3.雙指縮放 = 縮放物件<br>4.雙指旋轉 = 旋轉物件<br><br><hr><br><h2>【圖層】操作：</h2>1.點擊左邊的眼睛可以控制物件是否顯示<br>2.點擊圖層後，就只會編輯該物件<br>3.點擊【切換】可以變更素材<br><br><hr><br><h2>作者</h2>廖文宏<br>信箱　　：hbl917070@gmail.com<br>巴哈姆特：<a href="https://home.gamer.com.tw/homeindex.php?owner=hbl917070" target="_blank">hbl917070</a><br><br></div></div><script type="text/javascript">function fun_說明_顯示() {document.getElementById("txt").style.display = "block";}function fun_說明_隱藏() {document.getElementById("txt").style.display = "none";}</script></div><div id="saveimg" style="display:none;"><div id="saveimg_box" style="height:310px;"><div id="saveimg_tit">保存圖片<button id="saveimg_tit_close" onclick="fun_儲存圖片_關閉()">╳</button></div><div style="height:50px;"></div><button class="saveimg_but" onclick='fun_save("jpg")'>儲存成 jpg</button><button class="saveimg_but" onclick='fun_save("png")'>儲存成 png</button><button class="saveimg_but" onclick='fun_save("png_2")'>儲存成 png （不含原圖）</button></div></div><script type="text/javascript">function fun_儲存圖片_開啟() {document.getElementById("saveimg").style.display = "block";}function fun_儲存圖片_關閉() {document.getElementById("saveimg").style.display = "none";}</script></body></html>
+﻿<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <meta charset="utf-8" />
+    <title>星爆氣流斬 線上編輯器</title>
+
+    <script type='text/javascript' src='js/x3dom.js'> </script>
+    <link rel='stylesheet' type='text/css' href='css/x3dom.css' />
+    <!--<script src="js/jquery.min.js"></script>-->
+
+
+    <script type='text/javascript' src='js01.js'> </script>
+    <link rel='stylesheet' type='text/css' href='css01.css' />
+
+
+
+
+    <script type="text/javascript">
+        var int_nub = 8;
+
+
+        var ar_img = new Array();
+
+
+        function C_img(src, name) {
+            this.src = src;
+            this.name = name;
+        };
+
+        ar_img.push(new C_img("img/1-1.png", "逐暗者"));
+        ar_img.push(new C_img("img/1-2.png", "逐暗者（實）"));
+        ar_img.push(new C_img("img/1-3.png", "闡釋者"));
+        ar_img.push(new C_img("img/1-4.png", "闡釋者（實）"));
+
+        ar_img.push(new C_img("img/2-1.png", "星爆頭"));
+        ar_img.push(new C_img("img/2-2.png", "星爆表情"));
+        ar_img.push(new C_img("img/2-3.png", "星爆頭（左眼）"));
+        ar_img.push(new C_img("img/2-4.png", "星爆頭（右眼）"));
+        ar_img.push(new C_img("img/2-5.png", "星爆頭（鼻子）"));
+        ar_img.push(new C_img("img/2-6.png", "星爆頭（嘴巴）"));
+
+        ar_img.push(new C_img("img/3-1.png", "衝刺臉"));
+        ar_img.push(new C_img("img/3-2.png", "衝刺表情"));
+        ar_img.push(new C_img("img/3-3.png", "衝刺臉（左眼）"));
+        ar_img.push(new C_img("img/3-4.png", "衝刺臉（右眼）"));
+        ar_img.push(new C_img("img/3-5.png", "衝刺臉（嘴巴）"));
+
+        ar_img.push(new C_img("img/4-1.png", "騙人的吧"));
+        ar_img.push(new C_img("img/4-2.png", "騙人的吧（左眼）"));
+        ar_img.push(new C_img("img/4-3.png", "騙人的吧（右眼）"));
+        ar_img.push(new C_img("img/4-4.png", "騙人的吧（鼻子）"));
+        ar_img.push(new C_img("img/4-5.png", "騙人的吧（嘴巴）"));
+
+        ar_img.push(new C_img("img/5-1.png", "騙人的吧"));
+        ar_img.push(new C_img("img/5-2.png", "黑衣劍士服"));
+        ar_img.push(new C_img("img/5-3.png", "星爆身體"));
+        ar_img.push(new C_img("img/5-4.png", "茅場晶彥盾-1"));
+        ar_img.push(new C_img("img/5-5.png", "茅場晶彥盾-2"));
+        ar_img.push(new C_img("img/5-6.png", "艾恩葛朗特"));
+
+        //alert(ar_img[5].name);
+
+    </script>
+
+</head>
+<body>
+
+
+    <div id="main">
+
+
+        <div id="m_center">
+
+            <div onclick='document.getElementById("file_input").click()'>開啟圖片</div>
+            <input style="display:none" type="file" id="file_input" accept="image/*" />
+
+
+
+            <div onclick='fun_儲存圖片_開啟()'>保存圖片</div>
+            <div onclick='fun_說明_顯示()'>說明</div>
+
+
+
+
+
+
+        </div>
+
+
+        <div id="m_top">
+
+            <div id="top_box">
+
+                <canvas id="bac" style="position:absolute;top:0px;"></canvas>
+
+                <div style="width:0px;height:0px;overflow:scroll;">
+                    <canvas style="pointer-events:none;opacity:0;" id="bac01"></canvas>
+                </div>
+
+
+
+
+
+                <x3d id="x3d01" style="z-index:100" disableDoubleClick="true">
+                    <scene>
+                        <Viewpoint id="aView" position="0.15, -0.5, 3.5" orientation="1, 0.3, -0.1, 0.15" description="camera"></Viewpoint>
+
+                        <shape>
+                            <appearance>
+                                <ImageTexture id="x3d_img" url="img/2-1.png"></ImageTexture>
+                            </appearance>
+
+                            <plane solid="false" lit="false"></plane>
+                        </shape>
+                    </scene>
+                </x3d>
+
+
+
+
+                <script type="text/javascript">
+
+
+                    var d_position;
+                    var d_orientation;
+
+                    var runtime = null;
+                    var drag = false;
+
+                    function viewFunc(evt) {
+
+                        if (evt) {
+                            var pos = evt.position;
+                            var rot = evt.orientation;
+                            var mat = evt.matrix;
+
+                            var camPos = pos.x.toFixed(4) + ' ' + pos.y.toFixed(4) + ' ' + pos.z.toFixed(4);
+                            var camRot = rot[0].x.toFixed(4) + ' ' + rot[0].y.toFixed(4) + ' ' + rot[0].z.toFixed(4) + ' ' + rot[1].toFixed(4);
+
+                            //儲存到全域變數
+                            d_position = camPos;
+                            d_orientation = camRot;
+                        }
+
+                    }
+
+
+
+                    window.onload = function () {
+                        document.getElementById('aView').addEventListener('viewpointChanged', viewFunc, false);
+                    }
+
+                </script>
+
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+
+
+        <div id="m_bottom">
+
+            <div id="m_bottom_2">
+
+                <script type="text/javascript">
+
+                    var i2 = 0;
+                    function fun_增加圖層() {
+
+                        if (document.getElementsByClassName("bot_eye0").length == 0) {
+                            document.getElementById("x3d01").style.display = "block";;
+                        }
+
+                        //下面的圖層
+                        var sum = '';
+                        //sum += '<div class="bot_box" x="' + i2 + '" >';
+                        sum += '  <div class="bot_eye0">';
+                        sum += '    <div class="bot_eye" x="' + i2 + '" onclick="fun_刪除圖層(' + i2 + ')">';
+                        sum += '      <div class="bot_eye2" style="opacity:0;" x="' + i2 + '"></div>';
+                        sum += '    </div>';
+                        sum += '    <div class="bot_img" style="background-image:url(' + ar_img[0].src + ')" x="' + i2 + '"></div>';
+                        sum += '  </div>';
+                        sum += '  <div class="bot_switch" x="' + i2 + '" onclick="fun_switch(' + i2 + ')">切換</div>';
+                        sum += '  <div class="bot_name" x="' + i2 + '">' + ar_img[0].name + '</div>';
+                        //sum += '</div>';
+
+                        var obj_01 = document.createElement("div");
+                        obj_01.className = "bot_box";
+                        obj_01.setAttribute("x", i2);
+                        obj_01.innerHTML = sum;
+                        obj_01.id = "bot_box_" + i2;
+                        var ttt = i2;
+                        obj_01.onclick = function () { fun_點擊素材圖層(ttt) };
+
+                        document.getElementById("m_bottom_2").appendChild(obj_01);
+
+
+                        //圖片
+                        var obj_02 = document.createElement("img");
+                        obj_02.src = ar_img[0].src;
+                        obj_02.setAttribute("src2", ar_img[0].src);
+                        obj_02.id = "img_" + i2;
+                        obj_02.setAttribute("img_id", 0);
+                        obj_02.style.zIndex = 81000 - i2;
+                        obj_02.className = "imgs";
+                        obj_02.style.opacity = "0";
+
+                        document.getElementById("top_box").appendChild(obj_02);
+
+
+                        fun_調整圖片大小(obj_02);
+
+
+                        fun_點擊素材圖層(ttt, "初始化");
+
+
+
+                        i2++;
+                    }
+
+
+                    //------------------------------------------
+
+                    //
+                    //
+                    //
+                    function fun_刪除圖層(x) {
+
+                        //如果完全沒有圖層，就隱藏x3d
+                        if (document.getElementsByClassName("bot_eye0").length <= 1) {
+                            document.getElementById("x3d01").style.display = "none";;
+                        }
+
+
+                        try {
+                            if (x != obj_圖層暫存) {
+
+
+                            } else if (document.getElementById("bot_box_" + x).nextSibling != undefined) {
+
+                                var x_id = document.getElementById("bot_box_" + x).nextSibling.getAttribute("x");
+                                fun_點擊素材圖層(x_id);
+
+                            } else if (document.getElementById("bot_box_" + x).previousSibling != undefined) {
+
+                                var x_id = document.getElementById("bot_box_" + x).previousSibling.getAttribute("x");
+                                fun_點擊素材圖層(x_id);
+                            }
+                        } catch (e) {
+
+                        }
+
+
+
+                        document.getElementById("m_bottom_2").removeChild(document.getElementById("bot_box_" + x));//刪除圖層
+                        document.getElementById("top_box").removeChild(document.getElementById("img_" + x));
+                    }
+
+                    //------------------------------------------
+
+
+                    var obj_圖層暫存 = -1;
+
+                    //
+                    //
+                    //
+                    function fun_點擊素材圖層(x, x2) {
+
+                        if (obj_圖層暫存 == x) {//一樣就不作任何事情
+                            return;
+                        }
+                        if (document.getElementById("bot_box_" + x) == undefined) {
+                            return;
+                        }
+
+                        //全部的圖層初始化顏色
+                        var ar_bot_box = document.getElementsByClassName("bot_box");
+                        for (var j = 0; j < ar_bot_box.length; j++) {
+                            ar_bot_box[j].style.backgroundColor = "rgb(59, 59, 59)";
+                        }
+
+                        //設定目前圖層的顏色
+                        document.getElementById("bot_box_" + x).style.backgroundColor = "rgba(25,50,80,1)";
+
+
+                        setTimeout(function () {
+
+                            document.getElementById("img_" + x).style.opacity = "0";
+
+                            //離開時
+                            if (obj_圖層暫存 != -1 && document.getElementById("img_" + obj_圖層暫存) != undefined) {
+
+                                fun_把x3d轉成圖片();
+                            }
+
+                            obj_圖層暫存 = x;
+
+                            document.getElementById("x3d01").style.zIndex = document.getElementById("img_" + x).style.zIndex;
+                            document.getElementById("x3d_img").setAttribute("url", document.getElementById("img_" + x).getAttribute("src2"));
+                            document.getElementById("aView").setAttribute("position", document.getElementById("img_" + x).getAttribute("position"));
+                            document.getElementById("aView").setAttribute("orientation", document.getElementById("img_" + x).getAttribute("orientation"));
+
+
+
+                            if (x2 == "初始化") {
+                                fun_物件位置初始化();
+                            }
+
+                        }, 1);
+                        //this.getAttribute("x")
+                    };
+
+
+
+
+
+
+                    //------------------------------------------
+
+
+
+
+                    function fun_把x3d轉成圖片() {
+
+                        //儲存圖片前先動一下，避免圖片記憶體清除造成bug
+                        var s = d_position;
+                        var s_ar = s.split(" ");
+                        var ss = parseFloat(s_ar[2]) + 0.0001;
+                        var s2 = s_ar[0] + " " + s_ar[1] + " " + ss;
+                        document.getElementById("aView").setAttribute("position", s2);
+                      
+
+                        document.getElementById("img_" + obj_圖層暫存).src = document.getElementById("x3d01").runtime.getScreenshot();
+                        document.getElementById("img_" + obj_圖層暫存).style.opacity = "1";
+                        document.getElementById("img_" + obj_圖層暫存).setAttribute("position", s2);
+                        document.getElementById("img_" + obj_圖層暫存).setAttribute("orientation", d_orientation);
+              
+                    }
+
+
+
+
+                </script>
+
+            </div>
+
+
+
+            <div>
+                <button id="but_add" onclick="fun_增加圖層()">+</button>
+            </div>
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <!--切換素材 視窗-->
+    <div id="switch">
+
+        <div id="switch_box">
+
+            <div id="switch_tit">
+                切換素材
+                <button id="switch_tit_close" onclick="fun_switch_close()">╳</button>
+            </div>
+
+            <div style="height:50px;"></div>
+
+            <script type="text/javascript">
+                for (var i = 0; i < 26; i++) {
+                    if (i == 0) {
+                        document.write("<h1>刀劍</h1>");
+                    } else if (i == 4) {
+                        document.write("<h1>一臉星爆</h1>");
+                    } else if (i == 10) {
+                        document.write("<h1>衝刺臉</h1>");
+                    } else if (i == 15) {
+                        document.write("<h1>騙人的吧</h1>");
+                    } else if (i == 20) {
+                        document.write("<h1>其他</h1>");
+                    }
+
+                    document.write('<a id="switch_img' + i + '" onclick="fun_switch_end(' + i + ')" style="background-image:url(' + ar_img[i].src + ')"></a>');
+                }
+            </script>
+
+
+
+            <h1>其他功能</h1>
+            <button class="saveimg_but" onclick="fun_物件位置初始化()">物件位置初始化</button>
+            <br>
+
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+
+        fun_switch_close();//一開始先關閉
+
+
+        //
+        //
+        //關閉視窗
+        function fun_switch_close() {
+            document.getElementById("switch").style.display = "none";
+        }
+
+        //
+        //
+        //點擊圖片時(確認切換)
+        function fun_switch_end(x) {
+
+            // x = 圖片編號、int_切換編號 = 物件編號
+
+            fun_switch_close();
+            document.getElementById("img_" + int_切換編號).setAttribute("src", ar_img[x].src);
+            document.getElementById("bot_box_" + int_切換編號).getElementsByClassName("bot_img")[0].style.backgroundImage = "url(" + ar_img[x].src + ")";
+            document.getElementById("bot_box_" + int_切換編號).getElementsByClassName("bot_name")[0].innerHTML = ar_img[x].name;
+            document.getElementById("img_" + int_切換編號).setAttribute("img_id", x);//儲存目前的圖片id
+            document.getElementById("x3d_img").setAttribute("url", ar_img[x].src);
+            document.getElementById("img_" + int_切換編號).setAttribute("src2", ar_img[x].src);
+        }
+
+        var int_切換編號 = 0;
+
+
+        //點擊素材時（開啟視窗）
+        function fun_switch(x) {
+
+            document.getElementById("switch").style.display = "block";
+
+            int_切換編號 = x;
+
+            //設定顏色（全部初始化）
+            var ar_switch_img = document.getElementById("switch_box").getElementsByTagName("a");
+            for (var i = 0; i < ar_switch_img.length; i++) {
+                ar_switch_img[i].className = "";
+            }
+
+            var img_id = document.getElementById("img_" + x).getAttribute("img_id");
+            document.getElementById("switch_img" + img_id).className = "switch_sel";
+            document.getElementById("switch_box").scrollTop = document.getElementById("switch_img" + img_id).offsetTop - 100;
+        }
+
+
+        //
+        //
+        //
+        function fun_物件位置初始化() {
+
+            fun_switch_close();
+            //document.getElementById("x3d01").runtime.resetView();
+
+            document.getElementById("aView").setAttribute("position", "0.15, -0.5, 5");
+            document.getElementById("aView").setAttribute("orientation", "1, 0.3, -0.1, 0.15");
+        }
+
+    </script>
+    <!--  end  切換素材 視窗-->
+    <!--圖片儲存中-->
+    <div id="saveing" style="display:none;">
+        <div id="saveing_box">正在儲存圖片</div>
+    </div>
+
+    <script type="text/javascript">
+
+        function fun_儲存中_顯示() {
+            document.getElementById("saveing_box").className = "";
+            document.getElementById("saveing_box").innerHTML = "正在儲存圖片";
+            document.getElementById("saveing").style.display = "block";
+        }
+
+        function fun_儲存中_隱藏() {
+
+            document.getElementById("saveing_box").className = "saveing_box_end";
+            document.getElementById("saveing_box").innerHTML = "完成";
+            setTimeout(function () {
+                document.getElementById("saveing").style.display = "none";
+            }, 800);
+        }
+
+    </script>
+    <!--  end  圖片儲存中-->
+    <!--程式說明-->
+    <div id="txt" style="display:none;">
+
+        <div id="txt_box">
+
+            <div id="txt_tit">
+                說明
+                <button id="txt_tit_close" onclick="fun_說明_隱藏()">╳</button>
+            </div>
+
+            <div style="height:50px;"></div>
+
+            <div style="text-align:left;margin:10px;">
+
+                <h2>簡述</h2>
+                版本：1.4.0<br><br>
+                從手機選擇一張圖片後，透過各種的刀劍素材，創作出屬於你自己的星爆氣流斬。<br>
+
+                <br><hr><br>
+
+                <h2>【素材】操作：</h2>
+                1.單指拖曳 = 3D旋轉物件<br>
+                2.雙指拖曳 = 拖曳物件<br>
+                3.雙指縮放 = 縮放物件<br>
+                4.雙指旋轉 = 旋轉物件<br>
+
+                <br><hr><br>
+
+                <h2>【圖層】操作：</h2>
+                1.點擊左邊的眼睛可以控制物件是否顯示<br>
+                2.點擊圖層後，就只會編輯該物件<br>
+                3.點擊【切換】可以變更素材<br>
+
+                <br><hr><br>
+
+                <h2>作者</h2>
+                廖文宏<br>
+                信箱　　：hbl917070@gmail.com<br>
+                巴哈姆特：<a href="https://home.gamer.com.tw/homeindex.php?owner=hbl917070" target="_blank">hbl917070（深海異音）</a>
+                <br><br>
+
+            </div>
+
+
+
+        </div>
+
+
+        <script type="text/javascript">
+
+            function fun_說明_顯示() {
+                document.getElementById("txt").style.display = "block";
+            }
+            function fun_說明_隱藏() {
+                document.getElementById("txt").style.display = "none";
+            }
+
+        </script>
+
+    </div>
+    <!--  end  說明-->
+    <!--選擇圖片儲存的類型-->
+    <div id="saveimg" style="display:none;">
+        <div id="saveimg_box" style="height:310px;">
+
+            <div id="saveimg_tit">
+                保存圖片
+                <button id="saveimg_tit_close" onclick="fun_儲存圖片_關閉()">╳</button>
+            </div>
+            <div style="height:50px;"></div>
+
+
+            <button class="saveimg_but" onclick='fun_save("jpg")'>儲存成 jpg</button>
+            <button class="saveimg_but" onclick='fun_save("png")'>儲存成 png</button>
+            <button class="saveimg_but" onclick='fun_save("png_2")'>儲存成 png （不含原圖）</button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        function fun_儲存圖片_開啟() {
+            document.getElementById("saveimg").style.display = "block";
+            //document.getElementById("img_" + obj_圖層暫存).src = document.getElementById("x3d01").runtime.getScreenshot();
+            fun_把x3d轉成圖片();
+        }
+
+        function fun_儲存圖片_關閉() {
+            document.getElementById("saveimg").style.display = "none";
+        }
+    </script>
+    <!--  end  選擇圖片儲存的類型-->
+    <!--【視窗】顯示儲存圖片-->
+    <div id="saveed" style="display:none;">
+        <div id="saveed_box" style="height:75vh;overflow-x:hidden">
+
+            <div id="saveed_tit">
+                保存圖片
+                <button id="saveed_tit_close" onclick="fun_儲存圖片ed_關閉()">╳</button>
+            </div>
+            <div style="height:50px;"></div>
+
+
+            <div style="text-align:left;padding:0px 10px;">
+              
+                <div style="margin:10px 0px">  如果點下面的按鈕無法順利儲存，請改用【長按圖片】來儲存</div>
+                <a href="" id="a_download" download="starburst_stream.png" target="_blank"><div id="div_download">儲存圖片</div></a>
+            </div>
+
+            <img id="saveed_img" />
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        function fun_儲存圖片ed_開啟() {
+            document.getElementById("saveed").style.display = "block";
+        }
+
+        function fun_儲存圖片ed_關閉() {
+            document.getElementById("saveed").style.display = "none";
+        }
+    </script>
+    <!--  end  【視窗】顯示儲存圖片-->
+
+    <style>
+        #saveed_img {
+            border: 1px #fff solid;
+            width: calc( 100% - 20px );
+            display: block;
+            margin: 10px auto;
+        }
+
+        #div_download {
+            background-color: rgb(0, 122, 255);
+            display: inline-block;
+            padding: 10px;
+            color: #fff;
+            font-size: 18px;
+        }
+
+            #div_download:active {
+                background-color: rgb(47, 209, 95);
+            }
+    </style>
+
+</body>
+
+
+
+
+
+</html>
