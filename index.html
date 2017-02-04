@@ -334,16 +334,16 @@
                     function fun_把x3d轉成圖片() {
 
                         //儲存圖片前先動一下，避免圖片記憶體清除造成bug
-                        var s = d_position;
+                        /*var s = d_position;
                         var s_ar = s.split(" ");
                         var ss = parseFloat(s_ar[2]) + 0.0001;
                         var s2 = s_ar[0] + " " + s_ar[1] + " " + ss;
-                        document.getElementById("aView").setAttribute("position", s2);
+                        document.getElementById("aView").setAttribute("position", s2);*/
                       
 
                         document.getElementById("img_" + obj_圖層暫存).src = document.getElementById("x3d01").runtime.getScreenshot();
                         document.getElementById("img_" + obj_圖層暫存).style.opacity = "1";
-                        document.getElementById("img_" + obj_圖層暫存).setAttribute("position", s2);
+                        document.getElementById("img_" + obj_圖層暫存).setAttribute("position", d_position);
                         document.getElementById("img_" + obj_圖層暫存).setAttribute("orientation", d_orientation);
               
                     }
@@ -586,7 +586,25 @@
         function fun_儲存圖片_開啟() {
             document.getElementById("saveimg").style.display = "block";
             //document.getElementById("img_" + obj_圖層暫存).src = document.getElementById("x3d01").runtime.getScreenshot();
-            fun_把x3d轉成圖片();
+            //fun_把x3d轉成圖片();
+
+            var s = d_position;
+            var y = d_orientation;
+            document.getElementById("img_" + obj_圖層暫存).src = document.getElementById("x3d01").runtime.getScreenshot();
+
+            //儲存圖片前先動一下，避免圖片記憶體清除造成bug
+
+            var s_ar = s.split(" ");
+            var ss = parseFloat(s_ar[2]) + 0.0001;
+            var s2 = s_ar[0] + " " + s_ar[1] + " " + ss;
+            document.getElementById("aView").setAttribute("position", s2);
+            document.getElementById("aView").setAttribute("orientation", y);
+
+           
+            //alert(obj_圖層暫存);
+
+
+
         }
 
         function fun_儲存圖片_關閉() {
