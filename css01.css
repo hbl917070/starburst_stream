@@ -95,6 +95,7 @@ x3d {
     height: calc( 40vh - 50px );
     width: 100%;
     overflow: auto;
+	-webkit-overflow-scrolling: touch;
 }
 
 .bot_box {
