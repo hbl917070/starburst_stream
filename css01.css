@@ -11,6 +11,7 @@ html {
     width: 100%;
     overflow: hidden;
     background: #000;
+    -webkit-overflow-scrolling: auto; /* 當手指從觸摸屏上移開，滾動會立即停止 */
 }
 
 body {
@@ -27,6 +28,11 @@ a[href] {
 
 input {
     font-family: "微軟正黑體";
+}
+
+button:focus { /*取得焦點*/
+    /*避免chrome 的button有外框*/
+    outline: 0;
 }
 
 
@@ -95,7 +101,7 @@ x3d {
     height: calc( 40vh - 50px );
     width: 100%;
     overflow: auto;
-	-webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch; /* 當手指從觸摸屏上移開，會保持一段時間的滾動 */
 }
 
 .bot_box {
@@ -117,11 +123,10 @@ x3d {
     height: 60px;
     float: left;
     background-color: rgb(23, 23, 23);
-    background-image:url(img/delete.png);
-    background-size: 80% auto ;       /*圖片大小*/
-    background-position:center center; /*對齊位置*/
-    background-repeat: no-repeat ;   /*不重複*/
-
+    background-image: url(img/delete.png);
+    background-size: 80% auto; /*圖片大小*/
+    background-position: center center; /*對齊位置*/
+    background-repeat: no-repeat; /*不重複*/
 }
 
 .bot_eye2 {
@@ -160,7 +165,7 @@ x3d {
 
 
 /*選擇素材*/
-#switch, #txt, #saveimg,#saveed  {
+#switch, #txt, #saveimg, #saveed, #error {
     width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.8);
@@ -172,7 +177,7 @@ x3d {
 }
 
 /*選擇素材-框*/
-#switch_box, #txt_box, #saveimg_box , #saveed_box {
+#switch_box, #txt_box, #saveimg_box, #saveed_box, #error_box {
     background-color: rgba(0, 0, 0, 0.8);
     width: 95vw;
     height: 95vh;
@@ -185,6 +190,7 @@ x3d {
     border: 1px solid rgba(255, 255, 255, 0.3);
     overflow-y: auto;
     text-align: center;
+    -webkit-overflow-scrolling: touch; /* 當手指從觸摸屏上移開，會保持一段時間的滾動 */
 }
 
     /*選擇素材-圖片*/
@@ -212,7 +218,7 @@ x3d {
 }
 
 /*素材視窗 標題*/
-#switch_tit, #txt_tit, #saveimg_tit , #saveed_tit {
+#switch_tit, #txt_tit, #saveimg_tit, #saveed_tit, #error_tit {
     width: 95vw;
     height: 50px;
     background-color: rgba(88, 88, 88, 0.90);
@@ -293,8 +299,9 @@ x3d {
 #but_add {
     width: 50px;
     height: 50px;
-    border-radius: 40px;
+    border-radius: 50px;
     margin: 10px auto;
+    padding: 0px;
     display: block;
     background-color: rgb(0, 122, 255);
     color: #fff;
@@ -302,6 +309,7 @@ x3d {
     font-weight: 900;
     line-height: 30px;
     border: none;
+    text-align: center;
 }
 
     #but_add:active {

@@ -151,7 +151,18 @@
 
 
                     window.onload = function () {
+
+                        //註冊攝影機移動時的事件
                         document.getElementById('aView').addEventListener('viewpointChanged', viewFunc, false);
+
+                        //如果瀏覽器不支援
+                        setTimeout(function () {
+                            if (document.getElementById("x3dom-create-init-failed") != undefined) {
+                                document.getElementById("x3d01").style.display = "none";
+                                fun_error_開啟();
+                            }
+                        }, 500);
+
                     }
 
                 </script>
@@ -339,13 +350,13 @@
                         var ss = parseFloat(s_ar[2]) + 0.0001;
                         var s2 = s_ar[0] + " " + s_ar[1] + " " + ss;
                         document.getElementById("aView").setAttribute("position", s2);*/
-                      
+
 
                         document.getElementById("img_" + obj_圖層暫存).src = document.getElementById("x3d01").runtime.getScreenshot();
                         document.getElementById("img_" + obj_圖層暫存).style.opacity = "1";
                         document.getElementById("img_" + obj_圖層暫存).setAttribute("position", d_position);
                         document.getElementById("img_" + obj_圖層暫存).setAttribute("orientation", d_orientation);
-              
+
                     }
 
 
@@ -518,7 +529,7 @@
             <div style="text-align:left;margin:10px;">
 
                 <h2>簡述</h2>
-                版本：1.4.0<br><br>
+                版本：1.4.1<br><br>
                 從手機選擇一張圖片後，透過各種的刀劍素材，創作出屬於你自己的星爆氣流斬。<br>
 
                 <br><hr><br>
@@ -532,16 +543,45 @@
                 <br><hr><br>
 
                 <h2>【圖層】操作：</h2>
-                1.點擊左邊的眼睛可以控制物件是否顯示<br>
-                2.點擊圖層後，就只會編輯該物件<br>
-                3.點擊【切換】可以變更素材<br>
+                1.點擊下面的【+】可以新增物件（圖層）<br>
+                2.點擊圖層左邊的垃圾桶可以刪除物件<br>
+                3.點擊圖層後，就只會編輯該物件<br>
+                4.點擊【切換】可以變更素材<br>
 
                 <br><hr><br>
 
                 <h2>作者</h2>
                 廖文宏<br>
-                信箱　　：hbl917070@gmail.com<br>
+                信箱　　：<a href="mailto:hbl917070@gmail.com">hbl917070@gmail.com</a><br>
                 巴哈姆特：<a href="https://home.gamer.com.tw/homeindex.php?owner=hbl917070" target="_blank">hbl917070（深海異音）</a>
+                <br>
+
+                <br><hr><br>
+
+                <h2>補充</h2>
+                如果操作時有奇怪的現象，像是無法移動物件，就只會一直跳動，或是點【開啟圖片】沒有反應，
+                可以試試看線上版的：【
+                <a href="https://hbl917070.github.io/starburst_stream/" target="_blank">星爆氣流斬 線上編輯器</a>
+                】，記得用
+                <a href="https://play.google.com/store/apps/details?id=com.android.chrome&hl=zh_TW" target="_blank">google chrome</a> 、
+                <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox&hl=zh_TW" target="_blank">火狐</a> 、
+                <a href="https://play.google.com/store/apps/details?id=com.opera.browser&hl=zh_TW" target="_blank">opera</a>
+                之類的瀏覽器來開啟網頁，不要用手機內建的瀏覽器。
+
+                <br><br>
+
+                有其他疑問或是建議的話，可以到【
+                <a href="https://forum.gamer.com.tw/C.php?bsn=60076&snA=3717125" target="_blank">巴哈姆特</a>
+                】來回覆詢問，或是寫信到我的信箱也行。<br>
+                不要到商店留言複雜的問題，我會很難回答，而且也不能貼圖片
+                <br><br>
+
+
+                <br><hr><br>
+                <h2>改版資訊</h2>
+                1.4.1<br>
+                * 程式優化，大幅減少閃退幾率<br>
+                * 可以自由新增與刪除圖層<br>
                 <br><br>
 
             </div>
@@ -600,7 +640,7 @@
             document.getElementById("aView").setAttribute("position", s2);
             document.getElementById("aView").setAttribute("orientation", y);
 
-           
+
             //alert(obj_圖層暫存);
 
 
@@ -624,7 +664,7 @@
 
 
             <div style="text-align:left;padding:0px 10px;">
-              
+
                 <div style="margin:10px 0px">  如果點下面的按鈕無法順利儲存，請改用【長按圖片】來儲存</div>
                 <a href="" id="a_download" download="starburst_stream.png" target="_blank"><div id="div_download">儲存圖片</div></a>
             </div>
@@ -644,7 +684,6 @@
             document.getElementById("saveed").style.display = "none";
         }
     </script>
-    <!--  end  【視窗】顯示儲存圖片-->
 
     <style>
         #saveed_img {
@@ -666,6 +705,73 @@
                 background-color: rgb(47, 209, 95);
             }
     </style>
+    <!--  end  【視窗】顯示儲存圖片-->
+    <!--【視窗】顯示儲存圖片-->
+    <div id="error" style="display:none;">
+        <div id="error_box" style="height:75vh;overflow-x:hidden">
+
+            <div id="error_tit">
+                啟動失敗
+                <!--<button id="error_close" onclick="fun_儲存圖片ed_關閉()">╳</button>-->
+            </div>
+            <div style="height:50px;"></div>
+
+            <div style="text-align:left;font-size:18px;">
+
+                <p>
+                    <div style="font-size:20px;font-weight:900;margin-bottom:5px;">APP 無法使用：</div>
+                    請到google play商店搜尋
+                    【<a href="https://play.google.com/store/apps/details?id=com.google.android.webview&hl=zh_TW" target="_blank">Android System WebView</a>】
+                    ，把這個更新後就會解決問題。<br>
+                    如果更新了依然無法解決問題，可以嘗試用線上版的【<a href="https://hbl917070.github.io/starburst_stream/" target="_blank">星爆氣流斬 線上編輯器</a>】
+                </p>
+
+                <br>
+
+                <p>
+                    <div style="font-size:20px;font-weight:900;margin-bottom:5px;"> 線上版 無法使用：</div>
+
+                    請使用
+                    <a href="https://play.google.com/store/apps/details?id=com.android.chrome&hl=zh_TW" target="_blank">google chrome</a> 、
+                    <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox&hl=zh_TW" target="_blank">火狐</a> 、
+                    <a href="https://play.google.com/store/apps/details?id=com.opera.browser&hl=zh_TW" target="_blank">opera</a>
+                    之類的瀏覽器，不要用手機內建的瀏覽器。
+                </p>
+                <br />
+                <p>
+                    <div style="font-size:20px;font-weight:900;margin-bottom:5px;"> 不管怎麼用都無法使用：</div>
+
+                    可以到
+                    <a href="https://forum.gamer.com.tw/C.php?bsn=60076&snA=3717125" target="_blank">巴哈姆特</a>
+                    回覆來詢問，
+                    <br />
+                    也可以寫信給我：<a href="mailto:hbl917070@gmail.com">hbl917070@gmail.com</a><br>
+                    複雜的問題不要去商店留言問，那邊我會難回答，也不能貼圖片....
+                </p>
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        function fun_error_開啟() {
+            document.getElementById("error").style.display = "block";
+        }
+
+        function fun_error_關閉() {
+            document.getElementById("error").style.display = "none";
+        }
+    </script>
+
+    <style>
+    </style>
+    <!--  end  【視窗】顯示儲存圖片-->
+
 
 </body>
 
@@ -674,3 +780,7 @@
 
 
 </html>
+
+
+
+
