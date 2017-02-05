@@ -163,6 +163,12 @@
                             }
                         }, 500);
 
+                        //根據目前是APP或線上版，顯示不同訊息
+                        if (bool_app) {
+                            document.getElementById("saveed_t01").innerHTML = "圖片儲存後會放在【/starburst_stream】資料夾裡面";
+                        } else {
+                            document.getElementById("saveed_t01").innerHTML = "如果點下面的按鈕無法順利儲存，請改用【長按圖片】來儲存";
+                        }
                     }
 
                 </script>
@@ -526,7 +532,7 @@
 
             <div style="height:50px;"></div>
 
-            <div style="text-align:left;margin:10px;">
+            <div style="text-align:left;margin:10px;    text-align: justify;text-justify:inter-ideograph;">
 
                 <h2>簡述</h2>
                 版本：1.4.1<br><br>
@@ -552,19 +558,24 @@
 
                 <h2>作者</h2>
                 廖文宏<br>
-                信箱　　：<a href="mailto:hbl917070@gmail.com">hbl917070@gmail.com</a><br>
+                信箱：<a href="mailto:hbl917070@gmail.com">hbl917070@gmail.com</a><br>
                 巴哈姆特：<a href="https://home.gamer.com.tw/homeindex.php?owner=hbl917070" target="_blank">hbl917070（深海異音）</a>
                 <br>
 
                 <br><hr><br>
 
                 <h2>補充</h2>
-                如果操作時有奇怪的現象，像是無法移動物件，就只會一直跳動，或是點【開啟圖片】沒有反應，
-                可以試試看線上版的：【
+                如果操作時有奇怪的現象，像是無法移動物件，就只會一直跳動，或是點【開啟圖片】沒有反應。<br>
+                方法一：<br>
+                請到google play商店搜尋
+                【<a href="https://play.google.com/store/apps/details?id=com.google.android.webview&hl=zh_TW" target="_blank">Android System WebView</a>】
+                ，把這個更新後就會解決問題。<br>
+                方法二：<br>
+                改用網頁版【
                 <a href="https://hbl917070.github.io/starburst_stream/" target="_blank">星爆氣流斬 線上編輯器</a>
                 】，記得用
-                <a href="https://play.google.com/store/apps/details?id=com.android.chrome&hl=zh_TW" target="_blank">google chrome</a> 、
-                <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox&hl=zh_TW" target="_blank">火狐</a> 、
+                <a href="https://play.google.com/store/apps/details?id=com.android.chrome&hl=zh_TW" target="_blank">google chrome</a>、
+                <a href="https://play.google.com/store/apps/details?id=org.mozilla.firefox&hl=zh_TW" target="_blank">火狐</a>、
                 <a href="https://play.google.com/store/apps/details?id=com.opera.browser&hl=zh_TW" target="_blank">opera</a>
                 之類的瀏覽器來開啟網頁，不要用手機內建的瀏覽器。
 
@@ -665,7 +676,7 @@
 
             <div style="text-align:left;padding:0px 10px;">
 
-                <div style="margin:10px 0px">  如果點下面的按鈕無法順利儲存，請改用【長按圖片】來儲存</div>
+                <div style="margin:10px 0px" id="saveed_t01">  訊息說明</div>
                 <a href="" id="a_download" download="starburst_stream.png" target="_blank"><div id="div_download">儲存圖片</div></a>
             </div>
 
@@ -678,6 +689,7 @@
 
         function fun_儲存圖片ed_開啟() {
             document.getElementById("saveed").style.display = "block";
+            document.getElementById("saveed_box").scrollTop = 0;
         }
 
         function fun_儲存圖片ed_關閉() {

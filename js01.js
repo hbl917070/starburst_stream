@@ -373,16 +373,16 @@ function fun_save(img_type) {
     } else {
         document.getElementById("a_download").href = bac_暫存.toDataURL('image/png', 0.8);
     }
-  
+
 
     fun_儲存中_隱藏();
 
-    if (bool_app) {
+    /*if (bool_app) {
         document.getElementById("a_download").click();
-    } else {
-        document.getElementById("saveed_img").src = document.getElementById("a_download").href;
-        fun_儲存圖片ed_開啟();
-    }
+    } else {*/
+    document.getElementById("saveed_img").src = document.getElementById("a_download").href;
+    fun_儲存圖片ed_開啟();
+    //}
 
 
     ctx.putImageData(imgData, 0, 0);   //貼上原本的圖片
