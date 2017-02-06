@@ -169,6 +169,18 @@
                         } else {
                             document.getElementById("saveed_t01").innerHTML = "如果點下面的按鈕無法順利儲存，請改用【長按圖片】來儲存";
                         }
+
+
+
+
+
+
+                        function stopScrolling(touchEvent) {
+                            touchEvent.preventDefault();
+                        }
+                        document.addEventListener('touchstart', stopScrolling, false);
+                        document.addEventListener('touchmove', stopScrolling, false); 
+
                     }
 
                 </script>
@@ -703,6 +715,12 @@
             width: calc( 100% - 20px );
             display: block;
             margin: 10px auto;
+            -webkit-touch-callout: initial;
+            -webkit-user-select: initial;
+            -khtml-user-select: initial;
+            -moz-user-select: initial;
+            -ms-user-select: initial;
+            user-select: initial;
         }
 
         #div_download {
