@@ -46,10 +46,10 @@ document.onload = function () {
 
     function readFile() {
         var file = this.files[0];
-        if (!/image\/\w+/.test(file.type)) {
+        /*if (!/image\/\w+/.test(file.type)) {
             alert("文件必須為圖片！");
             return false;
-        }
+        }*/
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function (e) {
