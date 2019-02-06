@@ -1,4 +1,4 @@
-html {
+﻿html {
     margin: 0px;
     padding: 0px;
     /*禁止選取*/
@@ -317,3 +317,10 @@ x3d {
     #but_add:active {
         background-color: rgb(57, 198, 77);
     }
+
+
+hr {
+height:1px;
+border:none;
+background-color:rgba(255,255,255,0.3);
+}
