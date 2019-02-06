@@ -47,6 +47,7 @@
         ar_img.push(new C_img("img/1-4.png", "闡釋者（實）", "png"));
 
         ar_img.push(new C_img("", "一臉星爆", "title"));
+        ar_img.push(new C_img("img/5-1.png", "星爆髮", "png"));
         ar_img.push(new C_img("img/2-1.png", "星爆頭", "png"));
         ar_img.push(new C_img("img/2-2.png", "星爆表情", "png"));
         ar_img.push(new C_img("img/2-3.png", "星爆頭（左眼）", "png"));
@@ -91,7 +92,7 @@
         ar_img.push(new C_img("img/姆咪-驚訝.png", "姆咪-驚訝", "png"));
 
         ar_img.push(new C_img("", "其他", "title"));
-        ar_img.push(new C_img("img/5-1.png", "桐人-髮", "png"));
+   
         ar_img.push(new C_img("img/5-2.png", "黑衣劍士服", "png"));
         ar_img.push(new C_img("img/5-3.png", "星爆身體", "png"));
         ar_img.push(new C_img("img/5-4.png", "茅場晶彥盾-1", "png"));
@@ -112,7 +113,7 @@
 
 
                 if (ar_img[i].type == "title") {
-                    sum += "<h1><p style='padding-left:15px;'>" + ar_img[i].name + "</p></h1>";
+                    sum += "<h1><p style='padding-top:25px;padding-left:15px;padding-bottom:5px;margin:0px'>" + ar_img[i].name + "</p></h1>";
                 } else {
                     sum += '<a id="switch_img' + i + '" onclick="fun_switch_end(' + i + ')" style="background-image:url(' + ar_img[i].src + ')"></a>';
                 }
