@@ -1,4 +1,4 @@
-
+﻿
 
 var bac_暫存;
 var int_編輯size = 300;
